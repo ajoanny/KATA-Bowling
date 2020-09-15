@@ -2,7 +2,10 @@ class Project {
 
     calculateScore(list) {
         let result = 0;
-        return list.forEach(score => {
+        list.forEach(score => {
+            if(score === 10 ){
+                result += 1
+            }
             result += score
         })
         return result;
