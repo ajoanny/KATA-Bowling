@@ -8,39 +8,22 @@ describe('Project Test', () => {
     const project = new Project()
 
     context('Expect', () => {
-        it('tries expect', () => {
-            expect(project.testFunction()).to.equal(1)
+        it('should return 0 when no pin has been knocked down', () => {
+            // given
+            const listOfKnockedPins = [0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0, 0,0]
+            // when
+            const score = project.calculateScore(listOfKnockedPins)
+            // then
+            expect(score).to.equal(0)
         })
-    })
 
-
-
-
-
-
-    context('Mock', () => {
-        it('tries mock', () => {
-            const projectMock = sinon.mock(project);
-
-            projectMock.expects('mockFunction').withArgs();
-
-            expect(project.testFunction()).to.equal(1)
-            projectMock.verify();
-        })
-    })
-
-    context('Stub', () => {
-        it('tries stubs', () => {
-            const projectStub = sinon.stub(project,'stubFunction').returns(false);
-            expect(project.testFunction()).to.equal(false)
-        })
-    })
-
-    context('Excepction', () => {
-        it('tries to catch execptions', () => {
-
-            expect(project.exceptionFunction.bind(project)).to.throw('Exception Catch');
-
+        it('should return 10 when 10 pins have been knocked down', () => {
+            // given
+            const listOfKnockedPins = [0,2, 0,0, 0,1, 0,0, 0,5, 0,0, 1,0, 1,0, 0,0, 0,0]
+            // when
+            const score = project.calculateScore(listOfKnockedPins)
+            // then
+            expect(score).to.equal(10)
         })
     })
 })
